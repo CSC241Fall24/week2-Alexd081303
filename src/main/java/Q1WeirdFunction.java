@@ -1,22 +1,32 @@
-public class Q1WeirdFunction 
-{
-    public static int fRecursive(int n) 
-    {
-        if (n <= 1) {
-            return 1;
+public class Q1WeirdFunction {
+
+    public static int fRecursive(int n) {
+        if (n < 3) {
+            return n;
         }
-        return fRecursive(n - 1) + fRecursive(n - 2);
+        return fRecursive(n - 1) + 2 * fRecursive(n - 2) + 3 * fRecursive(n - 3);
     }
 
     public static int fIterative(int n) {
-        int a = 1;
-        int b = 1;
-        for (int i = 2; i <= n; i++) 
-        {
-            int temp = a + b;
-            a = b;
-            b = temp;
+        if (n < 3) {
+            return n;
         }
-        return b;
+        
+        int[] f = new int[n + 1];
+        f[0] = 0;
+        f[1] = 1;
+        f[2] = 2;
+        
+        for (int i = 3; i <= n; i++) {
+            f[i] = f[i - 1] + 2 * f[i - 2] + 3 * f[i - 3];
+        }
+        
+        return f[n];
+    }
+
+    public static void main(String[] args) {
+        int n = 5;
+        System.out.println("Recursive result for n = " + n + ": " + fRecursive(n));
+        System.out.println("Iterative result for n = " + n + ": " + fIterative(n));
     }
 }
