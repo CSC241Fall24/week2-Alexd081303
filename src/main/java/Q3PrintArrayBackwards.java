@@ -6,10 +6,10 @@ public class Q3PrintArrayBackwards {
     }
 
     private static void printRecursion(int i) {
-       if (i <= 0) {
+        if (i <= 0) {
             return;
         }
-        printRecursion(i - 1);
         System.out.println(array[i - 1]);
+        printRecursion(i - 1);
     }
 }
